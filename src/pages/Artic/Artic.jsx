@@ -9,11 +9,11 @@ import {
   CartesianGrid,
 } from "recharts";
 import useMetricData from "@/api/useMetricData";
-import "./Methane.scss";
+import "./Artic.scss";
 
-const Methane = () => {
+const Arctic = () => {
   const [years, setYears] = useState(45); // default: ultimi 45 anni
-  const { data, loading, error } = useMetricData('methane');
+  const { data, loading, error } = useMetricData('arctic');
 
   if (loading) return <p>Caricamento dati...</p>;
   if (error) return <p>Errore nel caricamento dei dati 😢</p>;
@@ -27,10 +27,10 @@ const Methane = () => {
   return (
     <div className="metric-container">
       <header className="metric-header">
-        <h1>Monitoraggio Metano 🔥</h1>
+        <h1>Monitoraggio Ghiaccio Artico 🧊</h1>
         <p className="metric-description">
-          Analisi delle concentrazioni di metano nell'atmosfera,
-          un potente gas serra con un forte impatto sul clima.
+          Analisi delle variazioni della calotta polare artica nel tempo,
+          un indicatore cruciale del cambiamento climatico globale.
         </p>
       </header>
 
@@ -59,7 +59,7 @@ const Methane = () => {
             />
             <YAxis
               label={{
-                value: 'Concentrazione di Metano (ppb)',
+                value: 'Estensione del Ghiaccio Artico (Milioni di Km²)',
                 angle: -90,
                 position: 'left',
               }}
@@ -68,7 +68,7 @@ const Methane = () => {
             <Line
               type="monotone"
               dataKey="value"
-              stroke="#8b5cf6"
+              stroke="#0ea5e9"
               dot={false}
             />
           </LineChart>
@@ -78,14 +78,14 @@ const Methane = () => {
       <div className="metric-info">
         <h2>Impatto del Cambiamento</h2>
         <p>
-          Il metano è un gas serra molto potente, con un potenziale di
-          riscaldamento globale circa 25 volte superiore alla CO₂.
-          Le principali fonti includono l'agricoltura, l'allevamento
-          e lo scioglimento del permafrost.
+          La riduzione del ghiaccio artico è uno degli indicatori più visibili
+          del riscaldamento globale. Il suo scioglimento non solo minaccia
+          gli ecosistemi polari ma contribuisce anche all'innalzamento del
+          livello del mare.
         </p>
       </div>
     </div>
   );
 };
 
-export default Methane;
+export default Arctic;

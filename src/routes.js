@@ -1,9 +1,9 @@
-import Home from './pages/Home/Home';
-import Temperature from './pages/Temperature/Temperature';
-import CO2 from './pages/CO2/CO2';
-import Methane from './pages/Methane/Methane';
-import NO2 from './pages/NO2/NO2';
-import Arctic from './pages/Arctic/Arctic';
+import Home from '@/pages/Home/Home';
+import Temperature from '@/pages/Temperature/Temperature';
+import CO2 from '@/pages/CO2/CO2';
+import Methane from '@/pages/Methane/Methane';
+import NO2 from '@/pages/NO2/NO2';
+import Artic from '@/pages/Artic/Artic';
 
 export const AppRoutes = [
   {
@@ -37,9 +37,9 @@ export const AppRoutes = [
     key: 'no2',
   },
   {
-    path: '/arctic',
-    element: Arctic,
+    path: '/artic',
+    element: Artic,
     name: 'Ghiaccio Artico',
-    key: 'arctic',
+    key: 'artic',
   },
 ];
