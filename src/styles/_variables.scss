@@ -1,0 +1,27 @@
+// --- ClimaLens Color Palette ---
+// Dark and professional background (Dark Mode dominant)
+$color-background-dark: #2a2a2a; // Deep Navy
+$color-background-light: #F4F7FB; // Light Gray/White
+
+// Text
+$color-text-primary: #F8F9FA;
+$color-text-secondary: #D1D9E0;
+$color-text-tertiary: #252525;
+
+// Data Colors
+$color-primary-accent: #31C7BE;
+
+// --- Spaces and Dimensions ---
+$space-small: 8px;
+$space-medium: 16px;
+$space-large: 32px;
+$space-huge: 64px;
+
+// --- Border Radius ---
+$border-radius: 6px;
+
+// --- Transitions ---
+$transition-fast: 0.25s ease-in-out;
+
+// --- Breakpoints ---
+$breakpoint-desktop: 900px;

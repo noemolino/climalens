@@ -1,0 +1,164 @@
+@use "./../../styles/variables" as *;
+@use "./../../styles/mixins" as *;
+@use "sass:color";
+
+.metric-container {
+  padding: $space-small $space-medium;
+
+  @media (min-width: $breakpoint-desktop) {
+    padding: $space-medium $space-large;
+  }
+
+  .metric-header {
+    text-align: center;
+    margin-bottom: $space-large;
+  }
+
+  // --- HERO STATS ---
+  .hero-stats-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-medium;
+    margin-bottom: $space-large;
+
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-card {
+      background: color.adjust($color-background-dark, $lightness: 3%);
+      border: 1px solid rgba(171, 184, 195, 0.1);
+      border-radius: $border-radius;
+      padding: $space-medium;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      @include climelens-card-hover;
+
+      .stat-label {
+        color: $color-text-secondary;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        margin-bottom: $space-small;
+      }
+
+      .stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $color-text-primary;
+      }
+    }
+  }
+
+  // --- CHART SECTION ---
+  .metric-chart {
+    background: color.adjust($color-background-dark, $lightness: 3%);
+    border: 1px solid rgba(171, 184, 195, 0.1);
+    border-radius: $border-radius;
+    padding: $space-medium;
+    margin-bottom: $space-large;
+
+    .chart-controls {
+      margin-bottom: $space-medium;
+      display: flex;
+      gap: $space-small;
+      align-items: center;
+      justify-content: center;
+      color: $color-text-secondary;
+
+      select {
+        background: $color-background-dark;
+        color: $color-text-primary;
+        border: 1px solid rgba(49, 199, 190, 0.3);
+        border-radius: $border-radius;
+        padding: 4px 12px;
+        cursor: pointer;
+      }
+    }
+
+    .chart-wrapper {
+      position: relative;
+      color: $color-text-secondary;
+      .y-axis-label {
+        font-size: 0.7rem;
+        color: $color-text-secondary;
+        margin-bottom: 5px;
+      }
+      .x-axis-label {
+        text-align: center;
+        font-size: 0.75rem;
+        color: $color-text-secondary;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  // --- INFO GRID (Impact & Actions) ---
+  .info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: $space-large;
+    margin: $space-large 0;
+
+    @media (min-width: $breakpoint-desktop) {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .info-column {
+      flex: 1;
+      background: color.adjust($color-background-dark, $lightness: 3%);
+      border: 1px solid rgba(171, 184, 195, 0.1);
+      border-radius: $border-radius;
+      padding: $space-large;
+      @include climelens-card-hover;
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: $space-large;
+        padding-bottom: $space-small;
+        border-bottom: 1px solid rgba($color-primary-accent, 0.3);
+        color: $color-text-primary;
+      }
+
+      .info-sub-section {
+        margin-bottom: $space-large;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        h3 {
+          font-size: 1.1rem;
+          color: $color-primary-accent;
+          margin-bottom: $space-medium;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: $space-small;
+            color: $color-text-secondary;
+            font-size: 0.95rem;
+            line-height: 1.5;
+
+            &::before {
+              position: absolute;
+              left: 0;
+              color: $color-primary-accent;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      &.metric-impact ul li::before { content: "▸"; }
+      &.metric-actions ul li::before { content: "✓"; }
+    }
+  }
+}

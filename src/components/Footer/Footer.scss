@@ -1,0 +1,33 @@
+@use "./../../styles/variables" as *;
+@use "sass:color";
+
+.climalens-footer {
+  // ======================================================
+  // BASE STYLES (MOBILE FIRST)
+  // ======================================================
+  background-color: color.adjust($color-background-dark, $lightness: 4%);
+  padding: $space-medium $space-large;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $color-text-secondary;
+  gap: $space-small;
+
+  // ======================================================
+  // FOOTER TEXT
+  // ======================================================
+   &__title {
+    font-size: 1.4rem;
+    color: $color-primary-accent;
+  }
+
+   &__text {
+    font-size: 0.9rem;
+  }
+
+  &__copy {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,15 @@
+@use 'variables' as *;
+@use 'sass:color';
+
+@mixin climelens-card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    background: color.adjust($color-background-dark, $lightness: 6%);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+}

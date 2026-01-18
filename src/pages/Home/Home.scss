@@ -1,0 +1,118 @@
+@use "./../../styles/variables" as *;
+@use "./../../styles/mixins" as *;
+@use "sass:color";
+
+.home-container {
+  padding: $space-small $space-medium;
+
+  @media (min-width: $breakpoint-desktop) {
+    padding: $space-medium $space-large;
+  }
+
+  .home-header {
+    margin-bottom: $space-large;
+    text-align: center;
+  }
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-large;
+    margin-bottom: $space-large;
+
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    }
+
+    .chart-card {
+      background: color.adjust($color-background-dark, $lightness: 4%);
+      border: 1px solid rgba(171, 184, 195, 0.2);
+      border-radius: $border-radius;
+      padding: $space-medium;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      cursor: pointer;
+      @include climelens-card-hover;
+
+      h3 {
+        font-size: 1.3rem;
+        color: $color-text-primary;
+        margin-bottom: $space-medium;
+      }
+
+      .status-badge {
+        padding: 2px $space-small;
+        border-radius: $border-radius;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0 auto;
+        width: fit-content;
+      }
+
+      .status-insight {
+        font-size: 0.9rem;
+        color: $color-text-secondary;
+        margin: $space-small 0 $space-medium 0;
+        line-height: 1.2;
+      }
+
+      .chart-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .recharts-wrapper {
+        margin: $space-medium 0;
+        .recharts-surface {
+          overflow: visible !important;
+        }
+      }
+
+      .y-axis-label,
+      .x-axis-label {
+        color: $color-text-secondary;
+        font-size: 0.9rem;
+        font-style: italic;
+      }
+
+      .y-axis-label {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        flex-shrink: 0;
+        width: 25px;
+      }
+
+      .x-axis-label {
+        width: 100%;
+        margin-top: $space-small;
+
+        @media (min-width: $breakpoint-desktop) {
+          margin-top: $space-medium;
+        }
+      }
+
+      .cta-link {
+        display: inline-block;
+        margin-top: $space-small;
+        color: $color-primary-accent;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        padding: 6px 12px;
+        border: 1px solid rgba($color-primary-accent, 0.3);
+        border-radius: 20px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba($color-primary-accent, 0.1);
+          box-shadow: 0 0 12px rgba($color-primary-accent, 0.2);
+        }
+      }
+    }
+  }
+}

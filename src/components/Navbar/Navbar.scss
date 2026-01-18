@@ -1,0 +1,191 @@
+@use "./../../styles/variables" as *;
+@use "sass:color";
+
+.climalens-header {
+  // ======================================================
+  // BASE STYLES (MOBILE FIRST)
+  // ======================================================
+  background-color: color.adjust($color-background-dark, $lightness: 4%);
+  padding: $space-medium $space-large;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  // ======================================================
+  // LOGO
+  // ======================================================
+  .logo-container {
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: $space-small;
+      text-decoration: none;
+    }
+
+    &-img {
+      width: 40px;
+      height: auto;
+    }
+
+    &-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: $color-primary-accent;
+      text-decoration: none;
+    }
+  }
+
+  // ======================================================
+  // HAMBURGER ICON (VISIBLE ON MOBILE)
+  // ======================================================
+  $hamburger-height: 2px;
+  $hamburger-width: 24px;
+  $hamburger-gap: 7px;
+
+  .hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+    display: block;
+  }
+
+  .hamburger-box {
+    position: relative;
+    display: inline-block;
+    width: $hamburger-width;
+    height: 26px;
+  }
+
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: $hamburger-width;
+    height: $hamburger-height;
+    background-color: $color-text-secondary;
+    transition: transform $transition-fast, opacity $transition-fast;
+    display: block;
+  }
+
+  .hamburger-inner::before {
+    top: -$hamburger-gap;
+  }
+
+  .hamburger-inner::after {
+    bottom: -$hamburger-gap;
+  }
+
+  .hamburger-button.open .hamburger-inner {
+    transform: rotate(45deg);
+  }
+
+  .hamburger-button.open .hamburger-inner::before {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  .hamburger-button.open .hamburger-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+
+  // ======================================================
+  // MOBILE NAVIGATION (FULLSCREEN OVERLAY)
+  // ======================================================
+  .header-nav {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: $color-background-dark;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-large;
+
+    transform: translateX(100%);
+    transition: transform $transition-fast;
+    z-index: 100;
+
+    // Overlay backdrop
+    &::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: $color-background-dark;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity $transition-fast;
+      pointer-events: none;
+    }
+
+    &.open {
+      transform: translateX(0);
+
+      &::before {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+
+    a {
+      font-size: 1.5rem;
+      padding: $space-small 0;
+      color: $color-text-secondary;
+      text-decoration: none;
+
+      &:hover,
+      &.active {
+          border-bottom: 3px solid $color-primary-accent;
+      }
+    }
+  }
+
+  // ======================================================
+  // DESKTOP STYLES (≥ DESKTOP BREAKPOINT)
+  // ======================================================
+  @media (min-width: $breakpoint-desktop) {
+
+    padding: $space-medium $space-large;
+    align-items: center;
+    flex-direction: column;
+
+    .hamburger-button {
+      display: none;
+    }
+
+    .header-nav {
+      position: static;
+      height: auto;
+      width: auto;
+      background-color: transparent;
+      transform: none;
+
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: $space-medium;
+
+      a {
+        font-size: 0.85rem;
+        color: $color-text-secondary;
+
+        &:hover,
+        &.active {
+          color: $color-text-secondary;
+          border-bottom: 3px solid $color-primary-accent;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

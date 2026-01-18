@@ -1,10 +1,21 @@
-// src/api/useMetricData.js
 import { useState, useEffect } from "react";
 import apiClient from "./apiClient";
 
 const parse = (v) => {
-  const n = parseFloat(v);
+  const n = Number.parseFloat(v);
   return Number.isFinite(n) ? n : null;
+};
+
+const decimalYearToYearMonth = (time) => {
+  const t = Number(time);
+  if (!Number.isFinite(t)) return null;
+
+  const year = Math.floor(t);
+  const decimal = t - year;
+
+  const month = Math.round(decimal * 12) + 1;
+
+  return `${year}-${String(month).padStart(2, "0")}`;
 };
 
 const normalize = (metric, items) => {
@@ -13,11 +24,15 @@ const normalize = (metric, items) => {
   switch (metric) {
     case "temperature":
       return items
-        .map((d) => ({
-          time: d.time,
-          value: parse(d.station), // <-- valore corretto
-        }))
-        .filter((x) => x.value != null);
+        .map((d) => {
+          const date = decimalYearToYearMonth(d.time);
+
+          return {
+            time: date,
+            value: parse(d.station),
+          };
+        })
+        .filter((x) => x.time != null && x.value != null);
 
     case "co2":
       return items
@@ -52,8 +67,9 @@ const extractArctic = (raw) => {
   if (!raw || !raw.arcticData || !raw.arcticData.data) return [];
 
   return Object.entries(raw.arcticData.data).map(([ym, obj]) => ({
-    time: ym,
+    time: `${ym.slice(0, 4)}-${ym.slice(4)}`,
     value: parse(obj.value),
+    anom: parse(obj.anom),
   }));
 };
 
