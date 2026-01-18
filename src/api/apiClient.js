@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://global-warming.org/api/';
+const BASE_URL = '/.netlify/functions/climateProxy';
 
 const ENDPOINTS = {
-    TEMPERATURE: `${BASE_URL}temperature-api`,
-    CO2: `${BASE_URL}co2-api`,
-    METHANE: `${BASE_URL}methane-api`,
-    NO2: `${BASE_URL}nitrous-oxide-api`,
-    ARCTIC: `${BASE_URL}arctic-api`,
+    TEMPERATURE: `${BASE_URL}?endpoint=temperature`,
+    CO2: `${BASE_URL}?endpoint=co2`,
+    METHANE: `${BASE_URL}?endpoint=methane`,
+    NO2: `${BASE_URL}?endpoint=no2`,
+    ARCTIC: `${BASE_URL}?endpoint=arctic`,
 };
 
 const fetchData = async (url) => {
